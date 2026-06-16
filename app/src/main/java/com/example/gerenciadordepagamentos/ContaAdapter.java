@@ -8,6 +8,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.gerenciadordepagamentos.database.Conta;
+import com.example.gerenciadordepagamentos.util.Moeda;
 import java.util.List;
 
 public class ContaAdapter extends RecyclerView.Adapter<ContaAdapter.ContaDetentor> {
@@ -39,7 +40,7 @@ public class ContaAdapter extends RecyclerView.Adapter<ContaAdapter.ContaDetento
         detentor.txtCategoria.setText(contaAtual.categoria);
         detentor.txtDescricao.setText(contaAtual.descricao);
         detentor.txtData.setText(contaAtual.data);
-        detentor.txtValor.setText(String.format("R$ %.2f", contaAtual.valor));
+        detentor.txtValor.setText(Moeda.formatar(contaAtual.valor));
 
         // Trata contas antigas para não crashar caso a forma de pagamento seja nula
         String formaPag = (contaAtual.formaPagamento != null && !contaAtual.formaPagamento.isEmpty()) ? " via " + contaAtual.formaPagamento : "";

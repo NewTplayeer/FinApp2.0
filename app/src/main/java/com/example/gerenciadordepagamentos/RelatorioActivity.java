@@ -7,6 +7,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.gerenciadordepagamentos.database.AppDatabase;
 import com.example.gerenciadordepagamentos.database.Conta;
+import com.example.gerenciadordepagamentos.util.Moeda;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -104,11 +105,11 @@ public class RelatorioActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        txtRelReceitas.setText(String.format("Receitas: R$ %.2f", rec));
-        txtRelDespesas.setText(String.format("Despesas: R$ %.2f", des));
+        txtRelReceitas.setText("Receitas: " + Moeda.formatar(rec));
+        txtRelDespesas.setText("Despesas: " + Moeda.formatar(des));
 
         double saldo = rec - des;
-        txtRelSaldo.setText(String.format("Saldo: R$ %.2f", saldo));
+        txtRelSaldo.setText("Saldo: " + Moeda.formatar(saldo));
         if (saldo < 0) {
             txtRelSaldo.setTextColor(Color.parseColor("#F44336"));
         } else {

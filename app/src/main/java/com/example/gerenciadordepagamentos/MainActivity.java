@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.gerenciadordepagamentos.database.AppDatabase;
 import com.example.gerenciadordepagamentos.database.Conta;
+import com.example.gerenciadordepagamentos.util.Moeda;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -277,8 +278,8 @@ public class MainActivity extends AppCompatActivity {
     private void atualizarResumo() {
         double rec = banco.contaDAO().buscarTotalReceitas();
         double des = banco.contaDAO().buscarTotalDespesas();
-        txtReceitas.setText(String.format("R$ %.2f", rec));
-        txtDespesas.setText(String.format("R$ %.2f", des));
-        txtSaldo.setText(String.format("R$ %.2f", rec - des));
+        txtReceitas.setText(Moeda.formatar(rec));
+        txtDespesas.setText(Moeda.formatar(des));
+        txtSaldo.setText(Moeda.formatar(rec - des));
     }
 }
